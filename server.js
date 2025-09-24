@@ -29,7 +29,7 @@ const paymentRoutes = require('./routes/paymentRoutes');
 const content = require('./routes/content');
 const publicContent = require('./routes/public_content');
 const userContent = require('./routes/user_content');
-const unlock = require('./routes/unlock');
+const donate = require('./routes/donate');
 const subscrybe = require('./routes/subscrybe');
 const notifications = require('./routes/notifications');
 const crypto = require('./routes/crypto');
@@ -96,7 +96,7 @@ const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
       'http://localhost:3000',
-      'http://localhost:5001',
+      'http://localhost:5000',
       'https://microtrax.netlify.app',
       "https://servers4sqldb.uc.r.appspot.com",
       "https://orca-app-j32vd.ondigitalocean.app",
@@ -115,6 +115,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+// Enable CORS for all origins and methods
+// app.use(cors()); 
 app.use(express.json());
 
 // Data storage for admin page
@@ -156,7 +158,7 @@ app.use('/api/wallet', wallet);
 app.use('/api/searchForUsers', searchForUsers);
 app.use('/api/messages', messageRoutes);
 app.use('/api/payments', paymentRoutes);
-app.use('/api/unlock', unlock);
+app.use('/api/donate', donate);
 app.use('/api/subscribe', subscrybe);
 app.use('/api/content', content);
 app.use('/api/public-content', publicContent);
@@ -381,7 +383,7 @@ app.get('/admin/users', (req, res) => {
   res.render('admin-users');
 });
 
-const PORT = 5001;
+const PORT = 5000;
 // const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

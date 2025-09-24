@@ -1173,6 +1173,9 @@ router.put('/:userId/favorite', authenticateToken, async (req, res) => {
           fav_str = fav_str.replaceAll("[", '');
           fav_str = fav_str.replaceAll("]", '');
           fav_str = fav_str.replaceAll('"', '');
+          // favorites_string:  \\\\\\\\\13\\\\\\\\\,\\\\\\\\\11\\\\\\\\\,\\\\\\\\\21\\\\\\\\\,\\\\\\\\\19\\\\\\\\\,\8\,\13\,21
+          fav_str = fav_str.replaceAll('\\', '');
+          fav_str = fav_str.replaceAll('\\\\\\', '\\');
           console.log("favorites_string: ", fav_str);
           // console.log("favorites_string: ", favorites);
           const num_of_fav = favorites.length;
